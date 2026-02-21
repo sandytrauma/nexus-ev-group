@@ -4,8 +4,10 @@ import React, { useState } from 'react';
 import { 
   Zap, ShieldCheck, TrendingUp, Factory, 
   Target, ShieldAlert, BarChart3, Megaphone, Presentation,
-  Rocket, Timer, Award, CheckCircle2, Package, Globe, ArrowRight
+  Rocket, Timer, Award, CheckCircle2, Package, Globe, ArrowRight,
+  GalleryHorizontal, LayoutGrid
 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function NexusUnifiedDashboard() {
   const [activeTab, setActiveTab] = useState<'plan' | 'marketing'>('plan');
@@ -104,7 +106,7 @@ export default function NexusUnifiedDashboard() {
             </div>
           </div>
         ) : (
-          /* --- ENHANCED MARKETING VIEW --- */
+          /* --- ENHANCED MARKETING VIEW WITH IMAGE GALLERY --- */
           <div className="animate-in slide-in-from-right duration-500 pb-20">
             <header className="mb-16 text-center md:text-left">
               <h1 className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.85] mb-6 uppercase">
@@ -188,6 +190,74 @@ export default function NexusUnifiedDashboard() {
                 </div>
               </div>
             </div>
+
+            {/* --- NEW: STOCK VISUALIZATION GALLERY --- */}
+            <section className="max-w-7xl mx-auto px-6 py-20">
+    <h2 className="text-4xl font-black mb-12 uppercase italic text-center flex items-center justify-center gap-3">
+        <LayoutGrid className="text-cyan-400" size={32} /> See What You Get.
+    </h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {/* Alpha Motor */}
+        <div className="relative group rounded-xl overflow-hidden aspect-video">
+            <Image
+                src="/images/alpha-motor-hero.png"
+                alt="Nexus Alpha Motor (1.2kW)"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                className="object-cover group-hover:scale-105 transition-transform"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                <p className="text-sm font-bold text-white">Alpha Motor (1.2kW)</p>
+            </div>
+        </div>
+
+        {/* Sine-Wave Controller */}
+        <div className="relative group rounded-xl overflow-hidden aspect-video">
+            <Image 
+                src="/images/sine-wave-controller.png"
+                alt="Nexus Sine-Wave Controller"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                className="object-cover group-hover:scale-105 transition-transform"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                <p className="text-sm font-bold text-white">Sine-Wave Controller</p>
+            </div>
+        </div>
+
+        {/* DC Converter */}
+        <div className="relative group rounded-xl overflow-hidden aspect-video">
+            <Image 
+                src="/images/dc-convertor.png"
+                alt="Nexus DC Converter"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                className="object-cover group-hover:scale-105 transition-transform"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                <p className="text-sm font-bold text-white">Heavy Duty DC Converter</p>
+            </div>
+        </div>
+
+        {/* Branded Kit */}
+        <div className="relative group rounded-xl overflow-hidden aspect-video">
+            <Image
+                src="/images/partner-starter-kit.png"
+                alt="Nexus Mechanic Marketing Kit"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                className="object-cover group-hover:scale-105 transition-transform"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                <p className="text-sm font-bold text-white">Branded Mechanic Kit</p>
+            </div>
+        </div>
+    </div>
+    <p className="text-center text-slate-600 text-xs mt-8">
+        *Images for illustrative purposes. Actual product design may vary slightly.
+    </p>
+</section>
+
 
             {/* Territory Trust */}
             <div className="text-center bg-white/[0.02] p-12 rounded-[3rem] border border-white/10">

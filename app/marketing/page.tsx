@@ -1,190 +1,206 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { 
-  Zap, ShieldCheck, Rocket, Timer, Award, 
-  CheckCircle2, Package, ShieldAlert, BarChart, 
-  ArrowRight, Globe, ZapIcon, 
+  Zap, ShieldCheck, Rocket, Target, Lightbulb, 
+  CheckCircle2, Package, ShieldAlert, BarChart3, 
+  ArrowRight, Globe, Info, IndianRupee, TrendingUp,
+  Cpu, MousePointer2, ChevronRight
 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function IPMarketingPage() {
+  const [calcUnits, setCalcUnits] = useState(25);
+  const marginPerUnit = 1650;
+  const monthlyProfit = calcUnits * marginPerUnit;
+
   return (
-    <div className="min-h-screen bg-[#020205] text-white font-sans selection:bg-cyan-500/30">
+    <div className="min-h-screen bg-[#020205] text-white font-sans selection:bg-cyan-400/30 pb-20">
       
-      {/* --- HERO: THE HOOK --- */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-cyan-400/10 blur-[120px] rounded-full -z-10" />
+      {/* --- FLOATING NAV --- */}
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl px-6 py-4 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-cyan-400 rounded-lg flex items-center justify-center text-black">
+            <Zap size={18} fill="currentColor" />
+          </div>
+          <span className="font-black tracking-tighter text-xl"><Link href="/">NEXUS</Link><span className="text-cyan-400">EV</span></span>
+        </div>
+        <div className="hidden md:flex items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+          <a href="#problem" className="hover:text-cyan-400 transition-colors">The Gap</a>
+          <a href="#investment" className="hover:text-cyan-400 transition-colors">ROI Matrix</a>
+          <a href="#roadmap" className="hover:text-cyan-400 transition-colors">12-Month Plan</a>
+        </div>
+        <button className="bg-cyan-400 text-black px-6 py-2 rounded-full text-[10px] font-black hover:scale-105 transition-all">
+          APPLY NOW
+        </button>
+      </nav>
+
+      {/* --- HERO SECTION --- */}
+      <section className="relative pt-48 pb-32 px-6 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] bg-cyan-500/10 blur-[140px] rounded-full -z-10" />
         
         <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
-            </span>
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-slate-400">Territory Slots Open: North India 2026</span>
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 mb-8 animate-bounce">
+            <span className="text-[10px] font-black tracking-[0.3em] uppercase text-cyan-400">EARLY ADOPTER SLOTS: 04 LEFT IN NCR</span>
           </div>
           
-          <h1 className="text-6xl md:text-9xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
-            THE LOCAL <br/><span className="text-cyan-400">MONOPOLY.</span>
+          <h1 className="text-7xl md:text-[10rem] font-black tracking-tighter mb-8 leading-[0.8] uppercase italic">
+            OWN THE <br/><span className="text-cyan-400 font-outline">ROADS.</span>
           </h1>
-          <p className="text-slate-400 text-lg md:text-2xl max-w-3xl mx-auto mb-10 leading-relaxed">
-            By 2027, 60% of 2-wheelers in your city will be Electric. Most will fail due to poor parts supply. 
-            As a <span className="text-white font-bold">Nexus Partner</span>, you own the supply chain.
+          
+          <p className="text-slate-400 text-lg md:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed">
+            Stop chasing customers. Start supplying the mechanics who serve them. 
+            Invest <span className="text-white font-bold">₹1.50L</span> to become the exclusive EV Hub for your 5km radius.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <button className="bg-cyan-400 text-black px-10 py-5 rounded-full font-black text-xl hover:scale-105 transition-all shadow-[0_0_30px_-5px_#22d3ee]">
-              SECURE YOUR ZONE
-            </button>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-20 border-t border-white/10 pt-10">
+            <Stat label="Thermal Rating" val="120°C" />
+            <Stat label="Buy-Back" val="85%" />
+            <Stat label="Delivery" val="< 24H" />
+            <Stat label="ROI" val="211%+" />
           </div>
         </div>
       </section>
 
-      {/* --- MARKET ANALYSIS --- */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-10 rounded-[2.5rem] border border-red-500/20 bg-red-500/5 backdrop-blur-sm">
-            <h3 className="text-red-400 font-bold mb-6 flex items-center gap-2 italic text-xl uppercase tracking-tighter">
-              <ShieldAlert size={24}/> The Market Problem
-            </h3>
-            <ul className="space-y-4 text-slate-300">
-              <li className="flex gap-3">
-                <span className="text-red-500 font-bold">✕</span>
-                <p>Mechanics wait 7+ days for specialized EV parts, losing customers daily.</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-red-500 font-bold">✕</span>
-                <p>Generic motors burn out in 45°C+ summers. No reliability.</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-red-500 font-bold">✕</span>
-                <p>No warranty trust in the unorganized spare parts market.</p>
-              </li>
-            </ul>
-          </div>
-
-          <div className="p-10 rounded-[2.5rem] border border-emerald-500/20 bg-emerald-500/5 backdrop-blur-sm">
-            <h3 className="text-emerald-400 font-bold mb-6 flex items-center gap-2 italic text-xl uppercase tracking-tighter">
-              <CheckCircle2 size={24}/> The Nexus Solution
-            </h3>
-            <ul className="space-y-4 text-slate-300">
-              <li className="flex gap-3">
-                <span className="text-emerald-500 font-bold">✓</span>
-                <p><b>24H Delivery:</b> Inventory is pre-stocked in your local Hub.</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-emerald-500 font-bold">✓</span>
-                <p><b>Alpha Tech:</b> Motors rated for 120°C extreme thermal resistance.</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-emerald-500 font-bold">✓</span>
-                <p><b>Direct Warranty:</b> SPV-backed 1-year replacement guarantee.</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* --- THE 1.5L VALUE BREAKDOWN --- */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="mb-12">
-          <h2 className="text-4xl font-black uppercase tracking-tight">The Asset-Backed Investment</h2>
-          <p className="text-slate-500 mt-2 italic font-mono">Total Entry Cost: ₹1,50,000</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          {/* Unit Economics */}
-          <div className="md:col-span-7 p-1 bg-gradient-to-br from-white/10 to-transparent rounded-[2.5rem]">
-            <div className="bg-[#0a0a0f] rounded-[2.4rem] p-10 h-full">
-              <h3 className="text-2xl font-bold mb-8 text-cyan-400 uppercase tracking-tighter">Profit Matrix</h3>
-              <div className="space-y-6">
-                <div className="flex justify-between border-b border-white/5 pb-4">
-                  <span className="text-slate-400">Avg. Profit Per Kit</span>
-                  <span className="font-mono font-bold text-xl">₹1,650</span>
+      {/* --- THE INTERACTIVE CALCULATOR --- */}
+      <section id="investment" className="max-w-7xl mx-auto px-6 py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-5">
+            <h2 className="text-4xl md:text-5xl font-black uppercase mb-6 leading-tight">Your Profit <br/><span className="text-cyan-400">Engine.</span></h2>
+            <p className="text-slate-400 mb-8 leading-relaxed">
+              Unlike stock markets, this is physical utility. You hold the inventory that keeps your city moving. Adjust the slider to see your monthly potential.
+            </p>
+            
+            <div className="bg-white/5 p-8 rounded-[2.5rem] border border-white/10">
+              <div className="flex justify-between mb-4">
+                <span className="text-sm font-bold uppercase text-slate-500">Kits Sold Per Month</span>
+                <span className="text-2xl font-black text-cyan-400">{calcUnits}</span>
+              </div>
+              <input 
+                type="range" min="5" max="100" value={calcUnits} 
+                onChange={(e) => setCalcUnits(parseInt(e.target.value))}
+                className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 mb-8"
+              />
+              
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-500">Margin per kit</span>
+                  <span className="font-mono">₹1,650</span>
                 </div>
-                <div className="flex justify-between border-b border-white/5 pb-4">
-                  <span className="text-slate-400">Marketing & Branding Support</span>
-                  <span className="font-mono font-bold text-emerald-400 uppercase text-xs">Included</span>
-                </div>
-                <div className="flex justify-between border-b border-white/5 pb-4">
-                  <span className="text-slate-400">Estimated Monthly Net</span>
-                  <span className="font-mono font-bold text-xl text-cyan-400">₹45,000+</span>
-                </div>
-                <div className="flex justify-between pt-4">
-                  <span className="text-slate-400">Projected Annual ROI</span>
-                  <span className="font-mono font-black text-3xl text-emerald-400">360%</span>
+                <div className="flex justify-between pt-4 border-t border-white/10">
+                  <span className="font-bold uppercase tracking-tighter">Monthly Net Profit</span>
+                  <span className="text-3xl font-black text-emerald-400">₹{monthlyProfit.toLocaleString()}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Physical Inventory */}
-          <div className="md:col-span-5 p-10 rounded-[2.5rem] border border-white/5 bg-white/5 flex flex-col justify-between">
-            <div>
-              <Package className="text-cyan-400 mb-6" size={32} />
-              <h3 className="text-xl font-bold mb-6">Initial "Alpha" Stock</h3>
-              <div className="space-y-4 text-sm font-mono text-slate-400">
-                <p>• 12x Alpha Motors (1.2kW)</p>
-                <p>• 20x Smart Sine-Wave Controllers</p>
-                <p>• 40x Heavy Duty Converters</p>
-                <p className="text-cyan-400 font-bold">• 500x Mechanic Training Kits</p>
-              </div>
-            </div>
-            <div className="mt-10 p-4 rounded-xl bg-cyan-400/10 border border-cyan-400/20">
-              <p className="text-[10px] text-cyan-400 font-black uppercase tracking-widest leading-tight">
-                Stock is refreshed monthly via Nexus SPV Logistics.
-              </p>
-            </div>
+          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FeatureCard 
+              icon={<Package className="text-cyan-400" />}
+              title="Asset-Backed"
+              desc="₹1 Lakh of your investment is locked in high-demand physical inventory."
+            />
+            <FeatureCard 
+              icon={<TrendingUp className="text-cyan-400" />}
+              title="Zero Marketing"
+              desc="Nexus routes all local web leads and repair inquiries directly to your Hub."
+            />
+            <FeatureCard 
+              icon={<Cpu className="text-cyan-400" />}
+              title="Alpha Tech"
+              desc="Exclusive rights to sell High-Thermal motors designed for Indian summers."
+            />
+            <FeatureCard 
+              icon={<ShieldCheck className="text-cyan-400" />}
+              title="Locked Zones"
+              desc="No other Nexus partner can be onboarded within your 5km Geo-Fence."
+            />
           </div>
         </div>
       </section>
 
-      {/* --- THE 12-MONTH ASCENT --- */}
-      <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
-        <h2 className="text-4xl font-black mb-16 uppercase italic text-center">The 1-Year Partner Roadmap</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <TimelineStep num="01" title="Deployment" desc="Hub signage installed. Local mechanics onboarded with gear." />
-          <TimelineStep num="03" title="Break Even" desc="Initial capital recovered through fast-moving inventory sales." />
-          <TimelineStep num="08" title="Market Cap" desc="Your Hub becomes the default supplier for a 5km radius." />
-          <TimelineStep num="12" title="Expansion" desc="Option to unlock Territory #2 or join Battery Swap modules." />
+      {/* --- THE INVENTORY VISUALIZER --- */}
+      <section className="max-w-7xl mx-auto px-6 py-20 bg-white/5 rounded-[3rem] border border-white/10">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-black uppercase">What's inside the ₹1.5L Kit?</h2>
+          <p className="text-slate-500 mt-2">Professional Grade EV fulfillment hardware</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <InventoryItem title="12x Alpha Motors" specs="1.2kW / IP67 / 120°C" color="cyan" />
+          <InventoryItem title="20x Controllers" specs="Smart Sine-Wave / 48-60V" color="white" />
+          <InventoryItem title="Training Collateral" specs="500x Kits for Local Mechanics" color="emerald" />
         </div>
       </section>
 
-      {/* --- GOVERNANCE & SECURITY --- */}
-      <section className="max-w-5xl mx-auto px-6 py-20 text-center">
-        <div className="bg-cyan-400/5 border border-cyan-400/10 p-12 rounded-[3rem]">
-          <h2 className="text-3xl font-black mb-6 uppercase italic tracking-widest">Partner Protection Clause</h2>
-          <p className="text-slate-400 mb-10 leading-relaxed text-sm max-w-2xl mx-auto">
-            We protect our Hubs. Nexus does not sell directly to mechanics in your zone. 
-            All regional web orders are automatically routed to your Hub for fulfillment.
-          </p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <div className="flex items-center gap-2 text-xs font-bold text-cyan-400 uppercase tracking-[0.2em]"><Globe size={14}/> Geo-Fenced Territory</div>
-            <div className="flex items-center gap-2 text-xs font-bold text-cyan-400 uppercase tracking-[0.2em]"><ShieldCheck size={14}/> Asset Buy-Back</div>
-            <div className="flex items-center gap-2 text-xs font-bold text-cyan-400 uppercase tracking-[0.2em]"><BarChart size={14}/> Price Protection</div>
-          </div>
+      {/* --- STEP BY STEP --- */}
+      <section id="roadmap" className="max-w-7xl mx-auto px-6 py-32">
+        <h2 className="text-4xl font-black mb-16 text-center italic uppercase">The Path to ROI</h2>
+        <div className="flex flex-col md:flex-row gap-4">
+          <Step num="1" title="Zone Audit" desc="We verify your storage space (100sqft) and local mechanic density." />
+          <Step num="2" title="Deployment" desc="Stock arrives. Your Hub goes live on our 'Nexus-Nearby' App." />
+          <Step num="3" title="Velocity" desc="First 10 kits sold. Capital starts churning. Weekly restocking begins." />
+          <Step num="4" title="Monopoly" desc="Local mechanics rely solely on your 24-hour part fulfillment." />
         </div>
       </section>
 
-      {/* --- FINAL CTA --- */}
-      <footer className="py-32 text-center border-t border-white/5">
-        <h2 className="text-5xl font-black mb-6">CLAIM YOUR CITY.</h2>
-        <p className="text-slate-500 mb-10">Limited Slots available for NCR Region Q1 2026.</p>
-        <button className="flex items-center gap-3 mx-auto bg-white text-black px-12 py-5 rounded-full font-black hover:bg-cyan-400 hover:scale-105 transition-all group">
-          BECOME A PARTNER <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-        </button>
-      </footer>
+      {/* --- FINAL ACTION --- */}
+      <section className="max-w-4xl mx-auto px-6 text-center py-20 border-t border-white/10">
+        <h2 className="text-5xl md:text-7xl font-black uppercase mb-8">Ready to <br/><span className="text-cyan-400">Scale?</span></h2>
+        <p className="text-slate-500 mb-12">Don't wait for your competitor to own your pincode.</p>
+        <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <button className="bg-white text-black px-12 py-5 rounded-full font-black text-lg hover:bg-cyan-400 transition-all flex items-center justify-center gap-2">
+            RESERVE MY TERRITORY <ArrowRight size={20} />
+          </button>
+          <button className="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-black text-lg hover:bg-white/10 transition-all">
+            DOWNLOAD FULL CATALOG
+          </button>
+        </div>
+      </section>
     </div>
   );
 }
 
-function TimelineStep({ num, title, desc }: { num: string, title: string, desc: string }) {
+// --- SUB-COMPONENTS ---
+
+function Stat({ label, val }: { label: string, val: string }) {
   return (
-    <div className="flex flex-col gap-4 p-6 glass-panel border-white/5 hover:border-cyan-400/20 transition-all rounded-[2rem]">
-      <div className="w-12 h-12 rounded-full bg-cyan-400/20 flex items-center justify-center font-black text-cyan-400 border border-cyan-400/30">
-        {num}
-      </div>
-      <h4 className="font-black text-xl">{title}</h4>
+    <div className="text-center">
+      <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-1">{label}</p>
+      <p className="text-2xl font-black text-white">{val}</p>
+    </div>
+  );
+}
+
+function FeatureCard({ icon, title, desc }: any) {
+  return (
+    <div className="p-8 rounded-[2rem] bg-white/5 border border-white/10 hover:border-cyan-400/50 transition-all group">
+      <div className="mb-4 group-hover:scale-110 transition-transform">{icon}</div>
+      <h4 className="text-lg font-bold mb-2 uppercase tracking-tight">{title}</h4>
       <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
+    </div>
+  );
+}
+
+function InventoryItem({ title, specs, color }: any) {
+  return (
+    <div className="p-6 rounded-3xl bg-white/[0.02] border border-white/5 text-center">
+      <div className={`w-12 h-12 mx-auto rounded-xl mb-4 flex items-center justify-center ${color === 'cyan' ? 'bg-cyan-400/20 text-cyan-400' : 'bg-white/10 text-white'}`}>
+        <Package size={24} />
+      </div>
+      <h4 className="font-bold mb-1">{title}</h4>
+      <p className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">{specs}</p>
+    </div>
+  );
+}
+
+function Step({ num, title, desc }: any) {
+  return (
+    <div className="flex-1 p-8 rounded-[2rem] bg-white/5 border border-white/10 relative overflow-hidden group">
+      <span className="absolute -right-4 -top-8 text-[8rem] font-black text-white/[0.03] group-hover:text-cyan-400/[0.05] transition-colors">{num}</span>
+      <h4 className="text-xl font-black mb-4 uppercase italic">Phase {num}</h4>
+      <p className="text-sm text-slate-500 leading-relaxed relative z-10">{desc}</p>
     </div>
   );
 }
